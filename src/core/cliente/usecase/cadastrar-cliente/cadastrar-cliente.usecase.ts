@@ -10,26 +10,30 @@ export class CadastrarClienteUseCase {
     private clienteGateway: IClienteGateway,
 
     @Inject(IAuthenticationGateway)
-    private authenticateGateway: IAuthenticationGateway,
+    private authenticationGateway: IAuthenticationGateway,
   ) { }
 
-  async execute({ nome, email, cpf, cadastrar, senha }: CriaClienteDto): Promise<any> {
+  async execute({ nome, email, cpf, senha }: CriaClienteDto): Promise<any> {
 
-    if (!email || !nome || !cpf || cadastrar === undefined || !senha) {
+    if (!email || !nome || !cpf || !senha) {
       throw new BadRequestException('email, nome, cpf, cadastrar e senha são campos obrigatórios');
     }
 
-    const cliente = Cliente.new({ nome, email, cpf, cadastrar, senha });
+    const cliente = Cliente.new({ nome, email, cpf, senha });
     const clienteCadastrado = await this.clienteGateway.cadastrarCliente(cliente);
 
-    // const token = await this.authenticateGateway.authorization(
-    //   clienteCadastrado.cpf,
-    //   senha,
-    //   cadastrar,
-    //   clienteCadastrado.nome,
-    //   clienteCadastrado.email,
-    // );
+    const autenticacaoCriada = await this.authenticationGateway.registrar(
+      clienteCadastrado.nome,
+      clienteCadastrado.email,
+      senha,
+    );
 
-    return clienteCadastrado;
+    if (!autenticacaoCriada?.UserConfirmed) {
+      throw new BadRequestException(`Não foi possível cadastrar usuário: ${autenticacaoCriada?.message}`);
+    }
+
+    const token = await this.authenticationGateway.autenticar(clienteCadastrado.nome, senha);
+
+    return token;
   }
 }

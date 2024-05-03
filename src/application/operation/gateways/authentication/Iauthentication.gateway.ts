@@ -1,11 +1,6 @@
 export interface IAuthenticationGateway {
-  authorization(
-    cpf: string,
-    senha: string,
-    cadastrar: boolean,
-    username: string | null,
-    email: string | null
-  ): Promise<any>;
+  registrar(username: string, email: string, senha: string): Promise<any>;
+  autenticar(nome: string, senha: string): Promise<any>;
 }
 
 export const IAuthenticationGateway = Symbol('IAuthenticationGateway');

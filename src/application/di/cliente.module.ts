@@ -9,7 +9,7 @@ import { ClienteGateway } from "../operation/gateways/cliente/cliente.gateway";
 import { CadastrarClienteUseCase } from "src/core/cliente/usecase/cadastrar-cliente/cadastrar-cliente.usecase";
 import { CadastrarClienteController } from "../operation/controllers/cadastrar-cliente.controller";
 import { IAuthenticationGateway } from "../operation/gateways/authentication/Iauthentication.gateway";
-import { AuthLambda } from "../operation/gateways/authentication/aws/authentication-lambda.gateway";
+import { CognitoAuth } from "../operation/gateways/authentication/aws/authentication-lambda.gateway";
 
 const persistenceProviders: Provider[] = [
   PrismaService,
@@ -25,7 +25,7 @@ const persistenceProviders: Provider[] = [
   },
   {
     provide: IAuthenticationGateway,
-    useFactory: () => new AuthLambda(),
+    useFactory: () => new CognitoAuth(),
     inject: [],
   }
 ]
@@ -35,7 +35,7 @@ const useCaseProviders: Provider[] = [
     provide: CadastrarClienteUseCase,
     useFactory: (clienteGateway: IClienteGateway, authGateway: IAuthenticationGateway) =>
       new CadastrarClienteUseCase(clienteGateway, authGateway),
-    inject: [IClienteGateway]
+    inject: [IClienteGateway, IAuthenticationGateway]
   }
 ]
 

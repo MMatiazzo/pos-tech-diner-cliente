@@ -9,6 +9,7 @@ export class CadastrarClienteController {
   ) { }
 
   async handle(payload: CriaClienteDto): Promise<any> {
-    return this.cadastrarClienteUseCase.execute(payload);
+    const response = await this.cadastrarClienteUseCase.execute(payload);
+    return response;
   }
 }

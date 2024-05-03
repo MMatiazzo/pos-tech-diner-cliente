@@ -1,43 +1,57 @@
-import * as AWS from 'aws-sdk';
 import { env } from "process";
 import { IAuthenticationGateway } from '../Iauthentication.gateway';
 
-export class AuthLambda implements IAuthenticationGateway {
-  async authorization(
-    cpf: string,
-    senha: string,
-    registrar: boolean,
-    username: string | null,
-    email: string | null,
-  ) {
+export class CognitoAuth implements IAuthenticationGateway {
+  async registrar(username: string | null, email: string | null, senha: string) {
+    const requestBody = {
+      "ClientId": env.COGNITO_CLIENT_ID,
+      "Password": senha,
+      "Username": username,
+      "UserAttributes": [
+        {
+          "Name": "email",
+          "Value": email
+        }
+      ]
+    }
 
-    console.log('PRINT NAS ENVS');
-    console.log('env.MY_AWS_REGION => ', env.MY_AWS_REGION);
-    console.log('env.AWS_LAMBDA_SDK_ACCESS_KEY => ', env.AWS_LAMBDA_SDK_ACCESS_KEY);
-    console.log('env.AWS_LAMBDA_SECRET_ACCESS_KEY => ', env.AWS_LAMBDA_SECRET_ACCESS_KEY);
-    console.log('env.AWS_LAMBDA_FUNCTION_NAME => ', env.AWS_LAMBDA_FUNCTION_NAME);
-
-    AWS.config.update({
-      region: env.MY_AWS_REGION,
-      accessKeyId: env.AWS_LAMBDA_SDK_ACCESS_KEY,
-      secretAccessKey: env.AWS_LAMBDA_SECRET_ACCESS_KEY
+    const response = await fetch(env.COGNITO_URL, {
+      method: "post",
+      body: JSON.stringify(requestBody),
+      headers: {
+        'Accept-Encoding': 'gzip, deflate, br',
+        'Content-Type': 'application/x-amz-json-1.1',
+        'Connection': 'keep-alive',
+        'X-Amz-Target': env.COGNITO_HEADER_SIGNUP
+      }
     });
 
-    const lambda = new AWS.Lambda();
+    const responseJson = await response.json();
+    return responseJson;
+  }
 
-    const params = {
-      FunctionName: env.AWS_LAMBDA_FUNCTION_NAME,
-      Payload: JSON.stringify({
-        cpf,
-        password: senha,
-        signup: registrar,
-        username,
-        email
-      })
-    };
+  async autenticar(nome: string, senha: string): Promise<any> {
+    const requestBody = {
+      "AuthFlow": "USER_PASSWORD_AUTH",
+      "ClientId": env.COGNITO_CLIENT_ID,
+      "AuthParameters": {
+        "USERNAME": nome,
+        "PASSWORD": senha
+      }
+    }
 
-    const token = await lambda.invoke(params).promise();
+    const response = await fetch(env.COGNITO_URL, {
+      method: "post",
+      body: JSON.stringify(requestBody),
+      headers: {
+        'Accept-Encoding': 'gzip, deflate, br',
+        'Content-Type': 'application/x-amz-json-1.1',
+        'Connection': 'keep-alive',
+        'X-Amz-Target': env.GOGNITO_HEADER_SIGNIN
+      }
+    });
 
-    return token;
+    const responseJson = await response.json();
+    return responseJson;
   }
 }
