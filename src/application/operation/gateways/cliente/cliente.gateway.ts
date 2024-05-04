@@ -14,4 +14,12 @@ export class ClienteGateway implements IClienteGateway {
     return this.clienteRepository.cadastrar(cliente);
   }
 
+  async getCliente(cpfOrEmail: string): Promise<Cliente> {
+    const clientes = await this.clienteRepository.getCliente(cpfOrEmail);
+    if (!clientes.length) {
+      return null
+    }
+
+    return clientes[0];
+  }
 }

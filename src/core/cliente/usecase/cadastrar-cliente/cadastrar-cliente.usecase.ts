@@ -1,5 +1,5 @@
 import { BadRequestException, Inject } from "@nestjs/common";
-import { CriaClienteDto } from "../../dto/cria-cliente.dto";
+import { AutenticaClienteDto } from "../../dto/autentica-cliente.dto";
 import { IClienteGateway } from "src/application/operation/gateways/cliente/Icliente.gateway";
 import { Cliente } from "../../entity/cliente.entity";
 import { IAuthenticationGateway } from "src/application/operation/gateways/authentication/Iauthentication.gateway";
@@ -13,7 +13,7 @@ export class CadastrarClienteUseCase {
     private authenticationGateway: IAuthenticationGateway,
   ) { }
 
-  async execute({ nome, email, cpf, senha }: CriaClienteDto): Promise<any> {
+  async execute({ nome, email, cpf, senha }: AutenticaClienteDto): Promise<any> {
 
     if (!email || !nome || !cpf || !senha) {
       throw new BadRequestException('email, nome, cpf, cadastrar e senha são campos obrigatórios');

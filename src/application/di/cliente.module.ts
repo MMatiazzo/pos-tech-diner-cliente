@@ -10,6 +10,8 @@ import { CadastrarClienteUseCase } from "src/core/cliente/usecase/cadastrar-clie
 import { CadastrarClienteController } from "../operation/controllers/cadastrar-cliente.controller";
 import { IAuthenticationGateway } from "../operation/gateways/authentication/Iauthentication.gateway";
 import { CognitoAuth } from "../operation/gateways/authentication/aws/authentication-lambda.gateway";
+import { AutenticarClienteUseCase } from "src/core/cliente/usecase/autenticar-cliente/autenticar-cliente.usecase";
+import { AutenticarClienteController } from "../operation/controllers/autenticar-cliente.controller";
 
 const persistenceProviders: Provider[] = [
   PrismaService,
@@ -36,6 +38,12 @@ const useCaseProviders: Provider[] = [
     useFactory: (clienteGateway: IClienteGateway, authGateway: IAuthenticationGateway) =>
       new CadastrarClienteUseCase(clienteGateway, authGateway),
     inject: [IClienteGateway, IAuthenticationGateway]
+  },
+  {
+    provide: AutenticarClienteUseCase,
+    useFactory: (clienteGateway: IClienteGateway, autenticationGateway: IAuthenticationGateway) =>
+      new AutenticarClienteUseCase(clienteGateway, autenticationGateway),
+    inject: [IClienteGateway, IAuthenticationGateway]
   }
 ]
 
@@ -44,6 +52,12 @@ const controllerProviders: Provider[] = [
     provide: CadastrarClienteController,
     useFactory: (cadastrarClienteUseCase: CadastrarClienteUseCase) => new CadastrarClienteController(cadastrarClienteUseCase),
     inject: [CadastrarClienteUseCase]
+  },
+  {
+    provide: AutenticarClienteController,
+    useFactory: (autenticarClienteUseCase: AutenticarClienteUseCase) =>
+      new AutenticarClienteController(autenticarClienteUseCase),
+    inject: [AutenticarClienteUseCase]
   }
 ]
 

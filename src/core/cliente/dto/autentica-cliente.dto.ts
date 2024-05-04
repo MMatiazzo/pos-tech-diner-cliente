@@ -1,5 +1,5 @@
 
-export type CriaClienteDto = {
+export type AutenticaClienteDto = {
   cpf: string;
   nome: string;
   email: string;
