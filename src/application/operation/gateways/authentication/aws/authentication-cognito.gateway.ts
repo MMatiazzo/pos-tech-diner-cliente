@@ -48,4 +48,23 @@ export class CognitoAuth implements IAuthenticationGateway {
       throw new BadRequestException("Cliente não encontrado");
     }
   }
+
+  async decodificarToken(token: string): Promise<any> {
+    try {
+      const requestBody = {
+        "AccessToken": token
+      }
+
+      const { data } = await cognitoApi.post('/', { ...requestBody }, {
+        headers: {
+          'X-Amz-Target': env.COGNITO_HEADER_GETUSER
+        }
+      });
+
+      return data;
+    } catch (err) {
+      console.error('error on cognito decode token info => ', err);
+      return null;
+    }
+  }
 }

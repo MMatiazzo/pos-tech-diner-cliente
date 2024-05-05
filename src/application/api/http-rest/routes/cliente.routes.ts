@@ -2,7 +2,9 @@ import { Body, Controller, HttpCode, Inject, Post } from '@nestjs/common';
 import { AutenticarClienteController } from 'src/application/operation/controllers/autenticar-cliente.controller';
 
 import { CadastrarClienteController } from 'src/application/operation/controllers/cadastrar-cliente.controller';
+import { DecodificarTokenClienteController } from 'src/application/operation/controllers/decodificar-token-cliente.controller';
 import { AutenticaClienteDto } from 'src/core/cliente/dto/autentica-cliente.dto';
+import { DecodificarTokenClienteDto } from 'src/core/cliente/dto/decodificar-token-cliente.dto';
 
 @Controller('/cliente')
 export class ClienteControllerRoute {
@@ -13,6 +15,9 @@ export class ClienteControllerRoute {
 
     @Inject(AutenticarClienteController)
     private autenticarClienteController: AutenticarClienteController,
+
+    @Inject(DecodificarTokenClienteController)
+    private decodificarTokenClienteController: DecodificarTokenClienteController,
   ) { }
 
   @Post('/cadastrar')
@@ -30,6 +35,15 @@ export class ClienteControllerRoute {
     @Body() payload: AutenticaClienteDto
   ): Promise<any> {
     const token = await this.autenticarClienteController.handle(payload);
+    return token;
+  }
+
+  @Post('/decodificar-acessToken')
+  @HttpCode(200)
+  async decodificarToken(
+    @Body() payload: DecodificarTokenClienteDto
+  ): Promise<any> {
+    const token = await this.decodificarTokenClienteController.handle(payload);
     return token;
   }
 }
