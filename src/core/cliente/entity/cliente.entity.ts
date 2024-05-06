@@ -1,5 +1,5 @@
 import { BadRequestException } from "@nestjs/common";
-import { AutenticaClienteDto } from "../dto/autentica-cliente.dto";
+import { CadastrarClienteDto } from "../dto/cadastrar-cliente.dto";
 import { Cpf } from "./cpf.entity";
 
 export class Cliente {
@@ -7,13 +7,13 @@ export class Cliente {
   nome: string;
   email: string;
 
-  private constructor(payload: AutenticaClienteDto) {
+  private constructor(payload: CadastrarClienteDto) {
     this.cpf = payload.cpf;
     this.nome = payload.nome;
     this.email = payload.email;
   }
 
-  public static new(payload: AutenticaClienteDto): Cliente {
+  public static new(payload: CadastrarClienteDto): Cliente {
     if (payload.cpf) {
       const isValid: boolean = Cpf.validaCpf(payload.cpf);
       if (!isValid) throw new BadRequestException("CPF inválido");

@@ -2,6 +2,7 @@ import { BadRequestException, Inject } from "@nestjs/common";
 import { AutenticaClienteDto } from "../../dto/autentica-cliente.dto";
 import { IClienteGateway } from "src/application/operation/gateways/cliente/Icliente.gateway";
 import { IAuthenticationGateway } from "src/application/operation/gateways/authentication/Iauthentication.gateway";
+import { env } from "process";
 
 export class AutenticarClienteUseCase {
   constructor(
@@ -11,7 +12,11 @@ export class AutenticarClienteUseCase {
     private autenticationGateway: IAuthenticationGateway
   ) { }
 
-  async execute({ nome, email, cpf, senha }: AutenticaClienteDto): Promise<any> {
+  async execute({ nome, email, cpf, senha, autenticar }: AutenticaClienteDto): Promise<any> {
+
+    if (autenticar) {
+      return this.autenticationGateway.autenticar(env.DEFAULT_USER_NOME, env.DEFAULT_USER_SENHA);
+    }
 
     const cpfOrEmail = email || cpf.replace(/[^\d]/g, '');
 

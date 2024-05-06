@@ -1,7 +1,8 @@
 
 export type AutenticaClienteDto = {
-  cpf: string;
-  nome: string;
-  email: string;
-  senha: string;
+  cpf?: string;
+  nome?: string;
+  email?: string;
+  senha?: string;
+  autenticar: boolean
 };
