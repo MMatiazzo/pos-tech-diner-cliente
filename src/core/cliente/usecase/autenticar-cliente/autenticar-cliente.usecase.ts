@@ -14,7 +14,7 @@ export class AutenticarClienteUseCase {
 
   async execute({ nome, email, cpf, senha, autenticar }: AutenticaClienteDto): Promise<any> {
 
-    if (autenticar) {
+    if (!autenticar) {
       return this.autenticationGateway.autenticar(env.DEFAULT_USER_NOME, env.DEFAULT_USER_SENHA);
     }
 

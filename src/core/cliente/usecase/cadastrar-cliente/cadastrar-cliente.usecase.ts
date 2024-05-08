@@ -28,6 +28,7 @@ export class CadastrarClienteUseCase {
       senha,
     );
 
+    console.log('autenticacaoCriada => ', autenticacaoCriada);
     if (!autenticacaoCriada?.UserConfirmed) {
       throw new BadRequestException(`Não foi possível cadastrar usuário: ${autenticacaoCriada?.message}`);
     }

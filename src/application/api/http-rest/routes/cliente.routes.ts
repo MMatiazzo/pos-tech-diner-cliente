@@ -1,4 +1,4 @@
-import { Body, Controller, HttpCode, Inject, Post } from '@nestjs/common';
+import { Body, Controller, Get, HttpCode, Inject, Post } from '@nestjs/common';
 import { AutenticarClienteController } from 'src/application/operation/controllers/autenticar-cliente.controller';
 
 import { CadastrarClienteController } from 'src/application/operation/controllers/cadastrar-cliente.controller';
@@ -19,6 +19,11 @@ export class ClienteControllerRoute {
     @Inject(DecodificarTokenClienteController)
     private decodificarTokenClienteController: DecodificarTokenClienteController,
   ) { }
+
+  @Get('/')
+  healthCheck(): any {
+    return { health: true }
+  }
 
   @Post('/cadastrar')
   @HttpCode(200)
