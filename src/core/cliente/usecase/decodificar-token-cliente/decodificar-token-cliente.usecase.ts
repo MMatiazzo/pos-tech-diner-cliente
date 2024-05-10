@@ -15,10 +15,6 @@ export class DecodificarTokenClienteUseCase {
       throw new BadRequestException('Cliente não encontrado, token inválido');
     }
 
-    if (cliente.Username === 'defaultuser') {
-      return null;
-    }
-
     return cliente;
   }
 }
