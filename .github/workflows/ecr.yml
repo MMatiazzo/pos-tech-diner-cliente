@@ -36,7 +36,7 @@ jobs:
 
   deploy-ecr:
     name: Push image
-    needs: test
+    needs: sonarcloud
     runs-on: ubuntu-latest
     environment: production
 
