@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 env:
-  AWS_REGION: ${{ vars.MY_AWS_REGION }}
+  AWS_REGION: ${{ vars.AWS_REGION }}
   ECR_REPOSITORY: ${{ vars.MY_ECR_REPOSITORY }}
 
 permissions:
