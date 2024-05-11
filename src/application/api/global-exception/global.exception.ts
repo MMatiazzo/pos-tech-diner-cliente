@@ -1,6 +1,5 @@
 import { Catch, ExceptionFilter, ArgumentsHost, HttpStatus, BadRequestException, NotFoundException } from '@nestjs/common';
-import { Prisma } from '@prisma/client';
-
+import { PrismaClientValidationError } from '@prisma/client/runtime/library';
 @Catch()
 export class GlobalExceptionFilter implements ExceptionFilter {
   catch(error: any, host: ArgumentsHost) {
@@ -13,7 +12,7 @@ export class GlobalExceptionFilter implements ExceptionFilter {
         message: 'Unique constraint failed',
         error: error.message,
       });
-    } else if (error instanceof Prisma.PrismaClientValidationError) {
+    } else if (error instanceof PrismaClientValidationError) {
       response.status(HttpStatus.BAD_REQUEST).json({
         statusCode: HttpStatus.BAD_REQUEST,
         message: 'Prisma error occurred',
