@@ -69,7 +69,7 @@ jobs:
           echo "image=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" >> $GITHUB_OUTPUT
 
   deploy-eks:
-    name: 'Deploy pod to EKS'
+    name: "Deploy pod to EKS"
     needs: deploy-ecr
     runs-on: ubuntu-latest
 
@@ -82,17 +82,13 @@ jobs:
         with:
           files: '["*.yml"]'
         env:
-          DATABASE_URL: ${{ env. DATABASE_URL}}
-          AWS_ACESS_KEY_ID: ${{ env. AWS_ACESS_KEY_ID}}
-          AWS_SECRET_ACESS_KEY: ${{ secrets. AWS_SECRET_ACESS_KEY}}
-          AWS_REGION: ${{ env. AWS_REGION}}
-          COGNITO_URL: ${{ env. COGNITO_URL}}
-          COGNITO_CLIENT_ID: ${{ env. COGNITO_CLIENT_ID}}
-          COGNITO_HEADER_SIGNUP: ${{ env. COGNITO_HEADER_SIGNUP}}
-          GOGNITO_HEADER_SIGNIN: ${{ env. GOGNITO_HEADER_SIGNIN}}
-          COGNITO_HEADER_GETUSER: ${{ env. COGNITO_HEADER_GETUSER}}
-          DEFAULT_USER_NOME: ${{ secrets. DEFAULT_USER_NOME}}
-          DEFAULT_USER_SENHA: ${{ secrets. DEFAULT_USER_SENHA}}
+          DATABASE_URL: ${{ secrets.DATABASE_URL}}
+          AWS_ACCESS_KEY_ID_B64: ${{ secrets.AWS_ACCESS_KEY_ID_B64}}
+          AWS_SECRET_ACCESS_KEY_B64: ${{ secrets.AWS_SECRET_ACCESS_KEY_B64}}
+          COGNITO_CLIENT_ID: ${{ secrets.COGNITO_CLIENT_ID}}
+          DEFAULT_USER_NOME: ${{ secrets.DEFAULT_USER_NOME}}
+          DEFAULT_USER_SENHA: ${{ secrets.DEFAULT_USER_SENHA}}
+          POS_TECH_DINER_CLIENTE_IMAGE: ${{ secrets.POS_TECH_DINER_CLIENTE_IMAGE}}
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
