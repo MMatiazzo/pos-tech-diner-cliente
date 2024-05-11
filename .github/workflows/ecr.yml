@@ -112,7 +112,7 @@ jobs:
 
       - name: Update deployment image
         shell: bash
-        run: kubectl set image deployment/pos-tech-diner-cliente-deployment pos-tech-image=${{ secrets.POS_TECH_DINER_CLIENTE_IMAGE }} -n postech
+        run: kubectl set image deployment/pos-tech-diner-cliente-deployment pos-tech-cliente-image=${{ secrets.POS_TECH_DINER_CLIENTE_IMAGE }} -n postech
 
       - name: POD to rollout
         shell: bash
