@@ -1,7 +1,7 @@
-# apiVersion: v1
-# kind: Namespace
-# metadata:
-#   name: postech
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: postech
 
 ---
 apiVersion: v1
@@ -10,7 +10,12 @@ metadata:
   name: pos-tech-diner-cliente-secret
   namespace: postech
 data:
-  TESTE: "dGVzdGU="
+  COGNITO_CLIENT_ID: #{COGNITO_CLIENT_ID}#
+  DEFAULT_USER_NOME: #{DEFAULT_USER_NOME}#
+  DEFAULT_USER_SENHA: #{DEFAULT_USER_SENHA}#
+  DATABASE_URL: #{DATABASE_URL}#
+  AWS_ACESS_KEY_ID: #{AWS_ACESS_KEY_ID}#
+  AWS_SECRET_ACESS_KEY: #{AWS_SECRET_ACESS_KEY}#
 
 ---
 apiVersion: v1
@@ -19,17 +24,11 @@ metadata:
   name: pos-tech-diner-cliente-config-map
   namespace: postech
 data:
-  DATABASE_URL:
-  AWS_ACESS_KEY_ID:
-  AWS_SECRET_ACESS_KEY:
-  AWS_REGION:
-  COGNITO_URL:
-  COGNITO_CLIENT_ID:
-  COGNITO_HEADER_SIGNUP:
-  GOGNITO_HEADER_SIGNIN:
-  COGNITO_HEADER_GETUSER:
-  DEFAULT_USER_NOME:
-  DEFAULT_USER_SENHA:
+  AWS_REGION: "us-east-1"
+  COGNITO_URL: "https://cognito-idp.us-east-1.amazonaws.com/"
+  COGNITO_HEADER_SIGNUP: "AWSCognitoIdentityProviderService.SignUp"
+  GOGNITO_HEADER_SIGNIN: "AWSCognitoIdentityProviderService.InitiateAuth"
+  COGNITO_HEADER_GETUSER: "AWSCognitoIdentityProviderService.GetUser"
 
 ---
 apiVersion: apps/v1
@@ -48,9 +47,9 @@ spec:
     spec:
       containers:
         - name: pos-tech-diner-cliente-image
-          image:
+          image: #{POS_TECH_DINER_CLIENTE_IMAGE}#
           ports:
-            - containerPort: 3333
+            - containerPort: 3332
           envFrom:
             - secretRef:
                 name: "pos-tech-diner-cliente-secret"
