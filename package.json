@@ -22,7 +22,6 @@
     "test:cucumber": "cucumber-js -p default"
   },
   "dependencies": {
-    "@cucumber/pretty-formatter": "^1.0.1",
     "@nestjs/common": "^10.0.0",
     "@nestjs/config": "^3.2.2",
     "@nestjs/core": "^10.0.0",
