@@ -1,10 +1,10 @@
 import { Body, Controller, Get, HttpCode, Inject, Post } from '@nestjs/common';
-import { AutenticarClienteController } from 'src/application/operation/controllers/autenticar-cliente.controller';
+import { AutenticarClienteController } from '../../../../application/operation/controllers/autenticar-cliente.controller';
 
-import { CadastrarClienteController } from 'src/application/operation/controllers/cadastrar-cliente.controller';
-import { DecodificarTokenClienteController } from 'src/application/operation/controllers/decodificar-token-cliente.controller';
-import { AutenticaClienteDto } from 'src/core/cliente/dto/autentica-cliente.dto';
-import { DecodificarTokenClienteDto } from 'src/core/cliente/dto/decodificar-token-cliente.dto';
+import { CadastrarClienteController } from '../../../../application/operation/controllers/cadastrar-cliente.controller';
+import { DecodificarTokenClienteController } from '../../../../application/operation/controllers/decodificar-token-cliente.controller';
+import { AutenticaClienteDto } from '../../../../core/cliente/dto/autentica-cliente.dto';
+import { DecodificarTokenClienteDto } from '../../../../core/cliente/dto/decodificar-token-cliente.dto';
 
 @Controller('/cliente')
 export class ClienteControllerRoute {

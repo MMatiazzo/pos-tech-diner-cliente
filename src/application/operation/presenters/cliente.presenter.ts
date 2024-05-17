@@ -4,7 +4,7 @@ export class ClientePresenter {
 
     return {
       nome: token.Username,
-      email: email.Value === 'default_user_tech@email.com.br' ? null : email.Value
+      email: email?.Value === 'default_user_tech@email.com.br' ? null : email.Value
     }
   }
 }

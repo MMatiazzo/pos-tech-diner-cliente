@@ -22,7 +22,7 @@ describe('AutenticarClienteController', () => {
     });
 
     describe('handle', () => {
-        it('should call execute method of AutenticarClienteUseCase and return its response', async () => {
+        it('Deve chamar o metodo AutenticarClienteUseCase e retornar corretamente os dados', async () => {
 
             const mockResponse = {
                 cpf: "357.956.120-06",
