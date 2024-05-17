@@ -1,6 +1,6 @@
 import { env } from "process";
 import { IAuthenticationGateway } from '../Iauthentication.gateway';
-import { cognitoApi } from "src/shared/axios/api";
+import { cognitoApi } from "../../../../../shared/axios/api";
 import { BadRequestException } from "@nestjs/common";
 
 export class CognitoAuth implements IAuthenticationGateway {

@@ -1,5 +1,5 @@
 import { BadRequestException, Inject } from "@nestjs/common";
-import { IAuthenticationGateway } from "src/application/operation/gateways/authentication/Iauthentication.gateway";
+import { IAuthenticationGateway } from "../../../../application/operation/gateways/authentication/Iauthentication.gateway";
 import { DecodificarTokenClienteDto } from "../../dto/decodificar-token-cliente.dto";
 
 export class DecodificarTokenClienteUseCase {

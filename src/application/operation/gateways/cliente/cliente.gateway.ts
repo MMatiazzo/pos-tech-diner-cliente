@@ -1,7 +1,7 @@
-import { Cliente } from "src/core/cliente/entity/cliente.entity";
+import { Cliente } from "../../../../core/cliente/entity/cliente.entity";
 import { IClienteGateway } from "./Icliente.gateway";
 import { Inject } from "@nestjs/common";
-import { IClienteRepository } from "src/infrastructure/persistence/repositories/Icliente.repository";
+import { IClienteRepository } from "../../../../infrastructure/persistence/repositories/Icliente.repository";
 
 export class ClienteGateway implements IClienteGateway {
 
