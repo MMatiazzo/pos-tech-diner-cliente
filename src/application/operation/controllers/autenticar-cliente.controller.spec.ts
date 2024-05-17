@@ -17,10 +17,6 @@ describe('AutenticarClienteController', () => {
         controller = new AutenticarClienteController(useCase);
     });
 
-    it('should be defined', () => {
-        expect(controller).toBeDefined();
-    });
-
     describe('handle', () => {
         it('Deve chamar o metodo AutenticarClienteUseCase e retornar corretamente os dados', async () => {
 
