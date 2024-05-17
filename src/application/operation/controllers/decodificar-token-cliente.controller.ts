@@ -1,6 +1,6 @@
 import { Inject } from "@nestjs/common";
-import { DecodificarTokenClienteDto } from "src/core/cliente/dto/decodificar-token-cliente.dto";
-import { DecodificarTokenClienteUseCase } from "src/core/cliente/usecase/decodificar-token-cliente/decodificar-token-cliente.usecase";
+import { DecodificarTokenClienteDto } from "../../../core/cliente/dto/decodificar-token-cliente.dto";
+import { DecodificarTokenClienteUseCase } from "../../../core/cliente/usecase/decodificar-token-cliente/decodificar-token-cliente.usecase";
 import { ClientePresenter } from "../presenters/cliente.presenter";
 
 export class DecodificarTokenClienteController {

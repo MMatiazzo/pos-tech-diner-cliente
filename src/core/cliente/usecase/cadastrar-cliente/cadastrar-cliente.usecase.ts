@@ -1,8 +1,8 @@
 import { BadRequestException, Inject } from "@nestjs/common";
 import { AutenticaClienteDto } from "../../dto/autentica-cliente.dto";
-import { IClienteGateway } from "src/application/operation/gateways/cliente/Icliente.gateway";
+import { IClienteGateway } from "../../../../application/operation/gateways/cliente/Icliente.gateway";
 import { Cliente } from "../../entity/cliente.entity";
-import { IAuthenticationGateway } from "src/application/operation/gateways/authentication/Iauthentication.gateway";
+import { IAuthenticationGateway } from "../../../../application/operation/gateways/authentication/Iauthentication.gateway";
 
 export class CadastrarClienteUseCase {
   constructor(

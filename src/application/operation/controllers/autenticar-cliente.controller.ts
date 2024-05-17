@@ -1,6 +1,6 @@
 import { Inject } from "@nestjs/common";
-import { AutenticaClienteDto } from "src/core/cliente/dto/autentica-cliente.dto";
-import { AutenticarClienteUseCase } from "src/core/cliente/usecase/autenticar-cliente/autenticar-cliente.usecase";
+import { AutenticaClienteDto } from "../../../core/cliente/dto/autentica-cliente.dto";
+import { AutenticarClienteUseCase } from "../../../core/cliente/usecase/autenticar-cliente/autenticar-cliente.usecase";
 
 export class AutenticarClienteController {
   constructor(
