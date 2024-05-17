@@ -6,6 +6,8 @@ import { DecodificarTokenClienteController } from '../../../../application/opera
 import { AutenticaClienteDto } from '../../../../core/cliente/dto/autentica-cliente.dto';
 import { DecodificarTokenClienteDto } from '../../../../core/cliente/dto/decodificar-token-cliente.dto';
 
+// deploy trigger
+
 @Controller('/cliente')
 export class ClienteControllerRoute {
 
