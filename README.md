@@ -9,6 +9,8 @@ Substituir a váriavel DATABASE_URL com a connection string postgresdb
 <br>
 Executar o comando `npm run start:dev`
 
+##### A collection com os requests está no arquivo `micro-services.postman_collection.json` na pasta `CLIENTE`
+
 ## End-point: cadastrar-usuario
 #### End-point para fazer o cadastro de um usuário
 ### Method: POST
