@@ -13,7 +13,9 @@ import { CognitoAuth } from "../operation/gateways/authentication/aws/authentica
 import { AutenticarClienteUseCase } from "src/core/cliente/usecase/autenticar-cliente/autenticar-cliente.usecase";
 import { AutenticarClienteController } from "../operation/controllers/autenticar-cliente.controller";
 import { DecodificarTokenClienteUseCase } from "src/core/cliente/usecase/decodificar-token-cliente/decodificar-token-cliente.usecase";
+import { ExcluirClienteUseCase } from "src/core/cliente/usecase/excluir-cliente/excluir-cliente.usecase";
 import { DecodificarTokenClienteController } from "../operation/controllers/decodificar-token-cliente.controller";
+import { ExcluirClienteController } from "../operation/controllers/excluir-cliente.controller";
 
 const persistenceProviders: Provider[] = [
   PrismaService,
@@ -52,6 +54,12 @@ const useCaseProviders: Provider[] = [
     useFactory: (authGateway: IAuthenticationGateway) =>
       new DecodificarTokenClienteUseCase(authGateway),
     inject: [IAuthenticationGateway]
+  },
+  {
+    provide: ExcluirClienteUseCase,
+    useFactory: (clienteGateway: IClienteGateway, autenticationGateway: IAuthenticationGateway) =>
+      new ExcluirClienteUseCase(clienteGateway, autenticationGateway),
+    inject: [IClienteGateway, IAuthenticationGateway]
   }
 ]
 
@@ -72,6 +80,12 @@ const controllerProviders: Provider[] = [
     useFactory: (decodificarTokenClienteUseCase: DecodificarTokenClienteUseCase) =>
       new DecodificarTokenClienteController(decodificarTokenClienteUseCase),
     inject: [DecodificarTokenClienteUseCase]
+  },
+  {
+    provide: ExcluirClienteController,
+    useFactory: (excluirClienteUseCase: ExcluirClienteUseCase) =>
+      new ExcluirClienteController(excluirClienteUseCase),
+    inject: [ExcluirClienteUseCase]
   }
 ]
 

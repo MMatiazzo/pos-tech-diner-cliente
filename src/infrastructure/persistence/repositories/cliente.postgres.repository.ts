@@ -36,4 +36,12 @@ export class ClientePostgresRepository implements IClienteRepository {
       console.error('error prisma => ', e);
     }
   }
+
+  async excluirCliente(email: string): Promise<void> {
+    await this.prisma.cliente.delete({
+      where: {
+        email
+      },
+    })
+  }
 } 

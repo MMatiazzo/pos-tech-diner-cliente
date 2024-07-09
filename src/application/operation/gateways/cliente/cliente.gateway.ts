@@ -22,4 +22,8 @@ export class ClienteGateway implements IClienteGateway {
 
     return clientes[0];
   }
+
+  async excluirCliente(email: string): Promise<void> {
+    return await this.clienteRepository.excluirCliente(email);
+  }
 }

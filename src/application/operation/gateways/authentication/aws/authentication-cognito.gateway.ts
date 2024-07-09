@@ -67,4 +67,22 @@ export class CognitoAuth implements IAuthenticationGateway {
       return null;
     }
   }
+
+  async deletar(token: string) {
+    try {
+      const requestBody = {
+        "AccessToken": token
+      }
+
+      await cognitoApi.post('/', { ...requestBody }, {
+        headers: {
+          'X-Amz-Target': env.COGNITO_HEADER_DELETEUSER
+        }
+      });
+
+    } catch (err) {
+      console.error('error on cognito delete user => ', err);
+      throw err
+    }
+  }
 }

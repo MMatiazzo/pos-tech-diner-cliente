@@ -5,6 +5,8 @@ import { CadastrarClienteController } from '../../../../application/operation/co
 import { DecodificarTokenClienteController } from '../../../../application/operation/controllers/decodificar-token-cliente.controller';
 import { AutenticaClienteDto } from '../../../../core/cliente/dto/autentica-cliente.dto';
 import { DecodificarTokenClienteDto } from '../../../../core/cliente/dto/decodificar-token-cliente.dto';
+import { ExcluirClienteDto } from 'src/core/cliente/dto/excluir-cliente.dto';
+import { ExcluirClienteController } from 'src/application/operation/controllers/excluir-cliente.controller';
 
 // deploy trigger
 
@@ -20,6 +22,9 @@ export class ClienteControllerRoute {
 
     @Inject(DecodificarTokenClienteController)
     private decodificarTokenClienteController: DecodificarTokenClienteController,
+
+    @Inject(ExcluirClienteController)
+    private excluirClienteController: ExcluirClienteController,
   ) { }
 
   @Get('/')
@@ -52,5 +57,13 @@ export class ClienteControllerRoute {
   ): Promise<any> {
     const token = await this.decodificarTokenClienteController.handle(payload);
     return token;
+  }
+
+  @Post('/deletar')
+  @HttpCode(200)
+  async deletar(
+    @Body() payload: ExcluirClienteDto 
+  ): Promise<any> {
+    await this.excluirClienteController.handle(payload);
   }
 }
