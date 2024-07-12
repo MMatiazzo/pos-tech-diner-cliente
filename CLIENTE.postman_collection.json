@@ -1,0 +1,127 @@
+{
+	"info": {
+		"_postman_id": "5576b7ee-b499-4da4-99d8-e7e355263584",
+		"name": "CLIENTE",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "13378210",
+		"_collection_link": "https://warped-escape-624714.postman.co/workspace/post-tech~2931a1e9-f92e-468c-98e8-1b5d76e5d02d/collection/13378210-5576b7ee-b499-4da4-99d8-e7e355263584?action=share&source=collection_link&creator=13378210"
+	},
+	"item": [
+		{
+			"name": "cadastrar-usuario",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"cpf\": \"248.031.690-47\",\r\n    \"nome\": \"usuarioteste4\",\r\n    \"email\": \"usuarioteste4@email.com.br\",\r\n    \"senha\": \"zD)c9FM89[7+\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3332/cliente/cadastrar",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3332",
+					"path": [
+						"cliente",
+						"cadastrar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "autenticar-usuario",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"cpf\": \"24803169047\",\r\n    \"senha\": \"zD)c9FM89[7+\",\r\n    \"autenticar\": true\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3332/cliente/autenticar",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3332",
+					"path": [
+						"cliente",
+						"autenticar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deletar-usuario",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"cpf\": \"24803169047\",\r\n    \"senha\": \"zD)c9FM89[7+\",\r\n    \"autenticar\": true\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3332/cliente/deletar",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3332",
+					"path": [
+						"cliente",
+						"deletar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "retornar-usuario",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"acessToken\": \"eyJraWQiOiI4TGQ5b0QyOGJVbVIrdlY3TXlJZCswOEFIVm82SjJYY0VrM1p1eGF3eWFRPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiIwN2M5YWJmMS1hMmQwLTRlMTMtOWFlMi04YjlmNjQ1NDEwMzAiLCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAudXMtZWFzdC0xLmFtYXpvbmF3cy5jb21cL3VzLWVhc3QtMV96RnZSbmJKNFUiLCJjbGllbnRfaWQiOiIyNzhmbWltZnA3cGw0OGhzNTJqbmN0aWhsZyIsIm9yaWdpbl9qdGkiOiI1ZjQ4MDhmMi1hZjQzLTRkYzUtYTQ0Yi1kMGQ0ZTNiMDgxMzEiLCJldmVudF9pZCI6IjM3NmUzM2JhLTE3YTItNDNhZS05NTk3LWNlZmUzZDIzMTZlMiIsInRva2VuX3VzZSI6ImFjY2VzcyIsInNjb3BlIjoiYXdzLmNvZ25pdG8uc2lnbmluLnVzZXIuYWRtaW4iLCJhdXRoX3RpbWUiOjE3MjA1NTIwNjMsImV4cCI6MTcyMDU1NTY2MywiaWF0IjoxNzIwNTUyMDYzLCJqdGkiOiI4NDY0NTdjNi1hZjkwLTRlZWYtOWY3MS1jM2UwZmI0YzIxNWIiLCJ1c2VybmFtZSI6ImRlZmF1bHRfdXNlcl90ZWNoIn0.q9rju9yZXTNC4xhJIJHA7iaH12KVW4Mjtsm37QfdlzRB2aW0hExdtRsPJMcxiY4c_nqfUEZ7ToKNjPjlJPKChodMeIZHvHcvzIYpS4cdzAdYctnuuuc3G_MKnUIlKCWp_rDDNWd8tJgIw95il8Z4w2xz-NUvAWFZMmXjYu91-zG6ME4dxWf_rCdfjLtzg60vvVtRY6P3pFQvxj17e-S43Dc81Z7cw-sg2R6jGsat9yeCK5uNb0qSmvizi9I5mGpqPpzAEX4QXSkubVX1WBah6S1BsVEnrPKQlJQOedlIEjNodBalWguJYgPy9dg6CmM-eiZYCs_MPGxOdQZQx75Peg\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3332/cliente/decodificar-acessToken",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3332",
+					"path": [
+						"cliente",
+						"decodificar-acessToken"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
