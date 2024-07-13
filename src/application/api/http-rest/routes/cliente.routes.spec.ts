@@ -6,16 +6,19 @@ import { DecodificarTokenClienteController } from '../../../../application/opera
 import { AutenticaClienteDto } from '../../../../core/cliente/dto/autentica-cliente.dto';
 import { DecodificarTokenClienteDto } from '../../../../core/cliente/dto/decodificar-token-cliente.dto';
 import { ClienteControllerRoute } from './cliente.routes';
+import { ExcluirClienteController } from '../../../../application/operation/controllers/excluir-cliente.controller';
 
 jest.mock('../../../../application/operation/controllers/cadastrar-cliente.controller');
 jest.mock('../../../../application/operation/controllers/autenticar-cliente.controller');
 jest.mock('../../../../application/operation/controllers/decodificar-token-cliente.controller');
+jest.mock('../../../../application/operation/controllers/excluir-cliente.controller');
 
 describe('ClienteControllerRoute', () => {
   let controller: ClienteControllerRoute;
   let cadastrarClienteController: CadastrarClienteController;
   let autenticarClienteController: AutenticarClienteController;
   let decodificarTokenClienteController: DecodificarTokenClienteController;
+  let excluirClienteController: ExcluirClienteController;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
@@ -24,6 +27,7 @@ describe('ClienteControllerRoute', () => {
         CadastrarClienteController,
         AutenticarClienteController,
         DecodificarTokenClienteController,
+        ExcluirClienteController
       ],
     }).compile();
 
@@ -31,6 +35,7 @@ describe('ClienteControllerRoute', () => {
     cadastrarClienteController = module.get<CadastrarClienteController>(CadastrarClienteController);
     autenticarClienteController = module.get<AutenticarClienteController>(AutenticarClienteController);
     decodificarTokenClienteController = module.get<DecodificarTokenClienteController>(DecodificarTokenClienteController);
+    excluirClienteController = module.get<ExcluirClienteController>(ExcluirClienteController);
   });
 
   it('should be defined', () => {

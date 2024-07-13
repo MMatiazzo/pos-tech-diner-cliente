@@ -1,7 +1,7 @@
 import { BadRequestException, Inject } from "@nestjs/common";
 import { IClienteGateway } from "../../../../application/operation/gateways/cliente/Icliente.gateway";
 import { ExcluirClienteDto } from "../../dto/excluir-cliente.dto";
-import { IAuthenticationGateway } from "src/application/operation/gateways/authentication/Iauthentication.gateway";
+import { IAuthenticationGateway } from "../../../../application/operation/gateways/authentication/Iauthentication.gateway";
 
 export class ExcluirClienteUseCase {
   constructor(

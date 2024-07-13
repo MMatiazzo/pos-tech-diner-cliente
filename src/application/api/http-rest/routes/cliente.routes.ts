@@ -6,7 +6,7 @@ import { DecodificarTokenClienteController } from '../../../../application/opera
 import { AutenticaClienteDto } from '../../../../core/cliente/dto/autentica-cliente.dto';
 import { DecodificarTokenClienteDto } from '../../../../core/cliente/dto/decodificar-token-cliente.dto';
 import { ExcluirClienteDto } from 'src/core/cliente/dto/excluir-cliente.dto';
-import { ExcluirClienteController } from 'src/application/operation/controllers/excluir-cliente.controller';
+import { ExcluirClienteController } from '../../../../application/operation/controllers/excluir-cliente.controller';
 
 // deploy trigger
 
