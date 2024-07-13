@@ -29,6 +29,7 @@ data:
   COGNITO_HEADER_SIGNUP: "AWSCognitoIdentityProviderService.SignUp"
   GOGNITO_HEADER_SIGNIN: "AWSCognitoIdentityProviderService.InitiateAuth"
   COGNITO_HEADER_GETUSER: "AWSCognitoIdentityProviderService.GetUser"
+  COGNITO_HEADER_DELETEUSER: "AWSCognitoIdentityProviderService.DeleteUser"
 
 ---
 apiVersion: apps/v1
