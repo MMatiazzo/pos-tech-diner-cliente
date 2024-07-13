@@ -30,15 +30,17 @@ Given('A module to create a new client', () => {
         cpf: '619.799.760-66',
       };
     },
+    excluirCliente: async () => { }
   } as IClienteGateway;
   authenticationGateway = {
     autenticar: async () => 'token',
-    decodificarToken: async () => {},
+    decodificarToken: async () => { },
     registrar: async () => {
       return {
         UserConfirmed: true,
       };
     },
+    deletar: async () => { }
   } as IAuthenticationGateway;
   cadastrarClienteUseCase = new CadastrarClienteUseCase(
     clienteGateway,
